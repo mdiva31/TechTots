@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -122,7 +123,7 @@ public class AppData : MonoBehaviour
                 string jsonData = webRequest.downloadHandler.text;
                 Debug.Log(jsonData);
                 Dictionary<string,Materi> dictMateri = JsonConvert.DeserializeObject<Dictionary<string,Materi>>(jsonData);
-                materi = dictMateri["0"];
+                materi =  dictMateri[dictMateri.Keys.ToList()[0]];
                 foreach(var dict in materi.sub_materi)
                 {
                     foreach(var key in dict.Keys)

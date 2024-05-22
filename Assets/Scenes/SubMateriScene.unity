@@ -616,7 +616,7 @@ MonoBehaviour:
   materiUrl: https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Materi
   kuisUrl: 
   getMateriUrl: 
-  materiName: Pengenalan Teknologi Informasi
+  materiName: Testing
   materi:
     materi_icon: https://firebasestorage.googleapis.com/v0/b/techtots-d72d3.appspot.com/o/App%20Logo%20(1).png?alt=media&token=9815aac4-c716-4e38-90c6-f4188ddd9b1b
     nama_materi: Pengenalan Teknologi Informasi
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasLoading: {fileID: 683796554}
   canvas: {fileID: 1592619838}
-  subMateriTerpilih: TestTemplate
+  subMateriTerpilih: Testing 1
   currentSlide: 0
   templates:
   - layout: 0
