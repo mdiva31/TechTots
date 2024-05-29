@@ -17,7 +17,8 @@ public enum SlideLayout
     image_only,
     image_subtitle,
     text_only,
-    column_2_text_only
+    column_2_text_only,
+    quiz
 ,
 
 }
@@ -32,7 +33,7 @@ public class AppData : MonoBehaviour
     [Header("Debug")]
     [TextArea(7,7)]
     public string getMateriUrl;
-    public string materiName;
+  
     [System.Serializable]
     public class Materi
     {
@@ -40,6 +41,7 @@ public class AppData : MonoBehaviour
         public string nama_materi ;
         public List<Dictionary<string, List<ContentItem>>> sub_materi;
         public List<SubMateri> contents = new List<SubMateri>();
+
     }
     [System.Serializable]
 
@@ -47,6 +49,10 @@ public class AppData : MonoBehaviour
     {
         public string nama ;
         public List<ContentItem> content ;
+        public string quizName;
+
+
+
     }
     [System.Serializable]
 
@@ -57,6 +63,7 @@ public class AppData : MonoBehaviour
         public string content ;
         public string imageUrl;
         public string image;
+        public string quizName;
 
 
         public SlideLayout slideLayout;
@@ -81,6 +88,14 @@ public class AppData : MonoBehaviour
 
 
     public Materi materi;
+    public QuizController.QuizData quizzes;
+    [Header("Data")]
+    public string materiName;
+    public string subMateriName;
+    public string quizName;
+    [Header("Video Interaktif")]
+    public string choosenVid;
+    public string vidUrl;
     private void Awake()
     {
         if (instance != null)
@@ -92,6 +107,7 @@ public class AppData : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    #region MATERI 
 
     [ContextMenu("Get Materi")]
     public void GetMateri()
@@ -100,11 +116,14 @@ public class AppData : MonoBehaviour
         StartCoroutine(IE_GetMateri(url));
     }
 
-    public IEnumerator IE_GetDefault()
+    public IEnumerator IE_GetMateri()
     {
         string url = $"https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Materi.json?auth=kVcKAXRA3jJtMyuzD8vOYNGZljbi4DljYDSkQ93i&orderBy=\"nama_materi\"&equalTo=\"{materiName}\"";
         yield return IE_GetMateri(url);
     }
+
+
+
     private IEnumerator IE_GetMateri(string url)
     {
         Debug.Log(url);
@@ -124,16 +143,60 @@ public class AppData : MonoBehaviour
                 Debug.Log(jsonData);
                 Dictionary<string,Materi> dictMateri = JsonConvert.DeserializeObject<Dictionary<string,Materi>>(jsonData);
                 materi =  dictMateri[dictMateri.Keys.ToList()[0]];
+
+                
+
                 foreach(var dict in materi.sub_materi)
                 {
                     foreach(var key in dict.Keys)
                     {
                         materi.contents.Add(new SubMateri() { nama = key, content = dict[key] });
+                        if(dict[key][dict[key].Count-1].slide_layout == "quiz")
+                        {
+                            materi.contents.Find(x=>x.nama == key).quizName = dict[key][dict[key].Count - 1].quizName;
+                        }
                     }
-                }
+                    
+                }   
             }
         }
     }
 
+    #endregion
 
+    #region QUIZ
+    [ContextMenu("Get Quiz")]
+    public void GetQuiz()
+    {
+        StartCoroutine(IE_GetQuiz());
+    }
+    public IEnumerator IE_GetQuiz()
+    {
+        string url = $"https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Quiz/{quizName}.json?auth=kVcKAXRA3jJtMyuzD8vOYNGZljbi4DljYDSkQ93i";
+        yield return IE_GetQuiz(url);
+        
+    }
+    private IEnumerator IE_GetQuiz(string url)
+    {
+        Debug.Log(url);
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        {
+            // Send the request and wait for a response
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error fetching JSON data: " + webRequest.error);
+            }
+            else
+            {
+                // Parse JSON data
+                string jsonData = webRequest.downloadHandler.text;
+                Debug.Log(jsonData);
+                quizzes = JsonConvert.DeserializeObject<QuizController.QuizData>(jsonData);
+            }
+        }
+    }
+
+    #endregion
 }

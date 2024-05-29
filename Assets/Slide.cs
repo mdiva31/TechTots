@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Slide : MonoBehaviour
 {
     public bool ready;
+    public SlideLayout layout;
     public TMP_Text titleTmp;
     [Header("Single Layout")]
     public TMP_Text content;
@@ -23,8 +24,11 @@ public class Slide : MonoBehaviour
     
     public IEnumerator SetupSlide(AppData.ContentItem content )
     {
-        switch(content.slideLayout)
+        layout = content.slideLayout;
+        switch (content.slideLayout)
         {
+            case SlideLayout.quiz:
+                break;
             case SlideLayout.title_only:
                 titleTmp.text = content.title;
                 break;
