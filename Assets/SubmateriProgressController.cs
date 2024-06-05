@@ -34,7 +34,7 @@ public class SubmateriProgressController : MonoBehaviour
 
             GameObject but = Instantiate(prefabButton, scrollContainer);
             var namaSubmateri = item.nama;
-            int progress = (int)item.progress * 100;
+            int progress = (int)(item.progress * 100);
 
             but.GetComponent<ProgressButton>().nama.text = namaSubmateri;
             but.GetComponent<ProgressButton>().progress.text = progress.ToString() + "%";
