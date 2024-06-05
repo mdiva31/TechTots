@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SubMateriScene.unity
     guid: 9af95aa268324e249aeda45a6259fc9c
+  - enabled: 1
+    path: Assets/Scenes/VideoInteraktifScene.unity
+    guid: 7413a74716dddf447b24c64db11a94bd
   m_configObjects: {}

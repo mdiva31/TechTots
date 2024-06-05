@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50.3
+  m_fontSize: 53.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -257,6 +257,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444521270}
   m_CullTransparentMesh: 1
+--- !u!1001 &508642839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2249552312554294973, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: materiName
+      value: Pengenalan Teknologi Informasi
+      objectReference: {fileID: 0}
+    - target: {fileID: 2249552312554294973, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: subMateriName
+      value: Pengertian Teknologi Informasi
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115167602356656435, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_Name
+      value: AppData
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 76.51759
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 264.0213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.37777
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988816076997223027, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a5ed644f87fba154dbd47393462f144c, type: 3}
 --- !u!1 &516175190
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,158 +782,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &912760975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 912760977}
-  - component: {fileID: 912760976}
-  m_Layer: 0
-  m_Name: AppData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &912760976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912760975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b11732f49544645a0b85b8d1081178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AuthCode: kVcKAXRA3jJtMyuzD8vOYNGZljbi4DljYDSkQ93i
-  materiUrl: https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Materi
-  kuisUrl: 
-  getMateriUrl: 
-  materi:
-    materi_icon: https://firebasestorage.googleapis.com/v0/b/techtots-d72d3.appspot.com/o/App%20Logo%20(1).png?alt=media&token=9815aac4-c716-4e38-90c6-f4188ddd9b1b
-    nama_materi: Pengenalan Teknologi Informasi
-    contents:
-    - nama: Pengertian Teknologi Informasi
-      content:
-      - content: Pengertian Teknologi Informasi
-        imageUrl: 
-        image: null
-        quizName: 
-        slideLayout: 0
-        title: 
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Hai anak-anak! Kamu pasti sering mendengar kata "teknologi", kan?
-          Nah, teknologi itu adalah kumpulan alat dan perangkat yang membantu kita
-          melakukan berbagai hal dengan lebih mudah dan cepat. Salah satu bagian
-          penting dari teknologi adalah Teknologi Informasi!
-        imageUrl: 
-        image: 
-        quizName: 
-        slideLayout: 0
-        title: Pengertian Teknologi Informasi
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Teknologi Informasi adalah segala sesuatu yang membantu kita mendapatkan,
-          menyimpan, mengolah, dan mengirimkan informasi. Contohnya, ketika kamu
-          menggunakan ponsel atau komputer untuk bermain game, mencari informasi
-          di internet, atau bahkan chatting dengan teman-temanmu, semua itu sudah
-          termasuk dalam Teknologi Informasi!
-        imageUrl: 
-        image: https://th.bing.com/th/id/R.6fd3b2549cf1f0bda36b71c42e8d3cd7?rik=L%2fCYIiqulbxToQ&riu=http%3a%2f%2fusdailyreview.com%2fwp-content%2fuploads%2f2014%2f08%2ftechnology.jpg&ehk=dzaRzyft3FDapcPTuIGU6nF%2b2zznUv5dDXCjidMhVMA%3d&risl=&pid=ImgRaw&r=0
-        quizName: 
-        slideLayout: 0
-        title: Apa itu Teknologi Informasi?
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      quizName: 
-    - nama: Manfaat Teknologi Informasi
-      content:
-      - content: Manfaat Teknologi Informasi
-        imageUrl: 
-        image: null
-        quizName: 
-        slideLayout: 0
-        title: 
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Hai anak-anak! Kamu pasti sering mendengar kata "teknologi", kan?
-          Nah, teknologi itu adalah kumpulan alat dan perangkat yang membantu kita
-          melakukan berbagai hal dengan lebih mudah dan cepat. Salah satu bagian
-          penting dari teknologi adalah Teknologi Informasi!
-        imageUrl: 
-        image: 
-        quizName: 
-        slideLayout: 0
-        title: Manfaat Teknologi Informasi
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Teknologi Informasi adalah segala sesuatu yang membantu kita mendapatkan,
-          menyimpan, mengolah, dan mengirimkan informasi. Contohnya, ketika kamu
-          menggunakan ponsel atau komputer untuk bermain game, mencari informasi
-          di internet, atau bahkan chatting dengan teman-temanmu, semua itu sudah
-          termasuk dalam Teknologi Informasi!
-        imageUrl: 
-        image: https://th.bing.com/th/id/R.6fd3b2549cf1f0bda36b71c42e8d3cd7?rik=L%2fCYIiqulbxToQ&riu=http%3a%2f%2fusdailyreview.com%2fwp-content%2fuploads%2f2014%2f08%2ftechnology.jpg&ehk=dzaRzyft3FDapcPTuIGU6nF%2b2zznUv5dDXCjidMhVMA%3d&risl=&pid=ImgRaw&r=0
-        quizName: 
-        slideLayout: 0
-        title: Apa itu Teknologi Informasi?
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      quizName: 
-  quizzes:
-    quizId: 0
-    title: 
-    description: 
-    questions: []
-  materiName: Testing
-  subMateriName: Testing 1
-  quizName: 
---- !u!4 &912760977
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912760975}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.30088, y: 185.09708, z: -0.58265364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1257237790
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca94557f7b403e041890b57dcbe6d6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxProgress: 0
+  currentProgress: 0
   canvasLoading: {fileID: 683796554}
   canvas: {fileID: 1592619838}
   subMateriTerpilih: Pengertian Teknologi Informasi
@@ -1123,7 +1038,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.95
+  m_fontSize: 60.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2404,7 +2319,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.65
+  m_fontSize: 60.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2527,8 +2442,8 @@ SceneRoots:
   - {fileID: 787422434}
   - {fileID: 1257237792}
   - {fileID: 1319626106}
-  - {fileID: 912760977}
   - {fileID: 683796558}
   - {fileID: 1686384018}
   - {fileID: 1592619838}
   - {fileID: 1436518372}
+  - {fileID: 508642839}

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class VideoInteraktifController : MonoBehaviour 
@@ -65,6 +66,7 @@ public class VideoInteraktifController : MonoBehaviour
                     string val = pair.Value;
                     button.GetComponent<Button>().onClick.AddListener(() => AppData.instance.choosenVid = key);
                     button.GetComponent<Button>().onClick.AddListener(() => AppData.instance.vidUrl = val);
+                    button.GetComponent<Button>().onClick.AddListener(() => SceneManager.LoadScene("VideoInteraktifScene"));
 
 
                 }

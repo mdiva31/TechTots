@@ -14,10 +14,11 @@ public class QuizController : MonoBehaviour
 
     public class QuizData
     {
-        public int quizId ;
+        public string quizId ;
         public string title ;
         public string description ;
         public List<Question> questions;
+        public float score;
     }
     [System.Serializable]
 
@@ -75,9 +76,9 @@ public class QuizController : MonoBehaviour
 
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return AppData.instance.IE_GetQuiz();
+        AppData.instance.PrepareQuiz();
     }
 
     private void OnEnable()
@@ -113,7 +114,7 @@ public class QuizController : MonoBehaviour
 
     public IEnumerator StartQuiz(QuizData quizData)
     {
-        int correct = 0;
+        float correct = 0;
         foreach (var quiz in quizData.questions)
         {
 
@@ -180,7 +181,9 @@ public class QuizController : MonoBehaviour
 
         quizPanel.SetActive(false);
         scorePanel.SetActive(true);
-        TMPScore.text = $"Score :  \n{correct}/{quizData.questions.Count}";
+        quizData.score = (correct / (float)quizData.questions.Count) * 100;
+        TMPScore.text = $"Score :  \n{quizData.score.ToString("0.0")}";
+        ProgressHandler.instance.SaveData();
         yield return null;
     }
 

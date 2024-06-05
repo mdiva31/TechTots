@@ -25,7 +25,16 @@ public enum SlideLayout
 public class AppData : MonoBehaviour
 {
     
+    public enum MenuState
+    {
+        MAIN,
+        MATERI,
+        KAMUS,
+        VID
+    }
+
     public static AppData instance;
+    public MenuState state; 
     [Header("CONNECTION")]
     [SerializeField] string AuthCode;
     public string materiUrl = "https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Materi";
@@ -33,7 +42,8 @@ public class AppData : MonoBehaviour
     [Header("Debug")]
     [TextArea(7,7)]
     public string getMateriUrl;
-  
+
+    #region MATERI CLASSES
     [System.Serializable]
     public class Materi
     {
@@ -41,21 +51,20 @@ public class AppData : MonoBehaviour
         public string nama_materi ;
         public List<Dictionary<string, List<ContentItem>>> sub_materi;
         public List<SubMateri> contents = new List<SubMateri>();
+        public float progress;
 
     }
     [System.Serializable]
-
     public class SubMateri
     {
         public string nama ;
         public List<ContentItem> content ;
         public string quizName;
-
+        public float progress;
 
 
     }
     [System.Serializable]
-
     public class ContentItem
     {
         [Header("Single Layout")]
@@ -86,8 +95,9 @@ public class AppData : MonoBehaviour
 
     }
 
+    #endregion
 
-    public Materi materi;
+    public Materi activeMateri;
     public QuizController.QuizData quizzes;
     [Header("Data")]
     public string materiName;
@@ -142,18 +152,18 @@ public class AppData : MonoBehaviour
                 string jsonData = webRequest.downloadHandler.text;
                 Debug.Log(jsonData);
                 Dictionary<string,Materi> dictMateri = JsonConvert.DeserializeObject<Dictionary<string,Materi>>(jsonData);
-                materi =  dictMateri[dictMateri.Keys.ToList()[0]];
+                activeMateri =  dictMateri[dictMateri.Keys.ToList()[0]];
 
                 
 
-                foreach(var dict in materi.sub_materi)
+                foreach(var dict in activeMateri.sub_materi)
                 {
                     foreach(var key in dict.Keys)
                     {
-                        materi.contents.Add(new SubMateri() { nama = key, content = dict[key] });
+                        activeMateri.contents.Add(new SubMateri() { nama = key, content = dict[key] });
                         if(dict[key][dict[key].Count-1].slide_layout == "quiz")
                         {
-                            materi.contents.Find(x=>x.nama == key).quizName = dict[key][dict[key].Count - 1].quizName;
+                            activeMateri.contents.Find(x=>x.nama == key).quizName = dict[key][dict[key].Count - 1].quizName;
                         }
                     }
                     
@@ -166,9 +176,14 @@ public class AppData : MonoBehaviour
 
     #region QUIZ
     [ContextMenu("Get Quiz")]
-    public void GetQuiz()
+    public void PrepareQuiz()
     {
-        StartCoroutine(IE_GetQuiz());
+       quizzes = ProgressHandler.instance.quizProgressList.Find(x => x.quizId == quizName);
+
+    }
+    public QuizController.QuizData GetQuiz(string title)
+    {
+        return ProgressHandler.instance.quizProgressList.Find(x => x.title == title); 
     }
     public IEnumerator IE_GetQuiz()
     {
