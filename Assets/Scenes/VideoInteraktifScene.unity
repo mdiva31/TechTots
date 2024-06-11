@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Video Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2077641819426116279, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
+      propertyPath: m_text
+      value: '[video]'
+      objectReference: {fileID: 0}
     - target: {fileID: 2133582561668262315, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
       propertyPath: m_IconPlay
       value: 
@@ -604,7 +608,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4415745982179208542, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1318948087}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2929498751205477790, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 587556741}
   m_SourcePrefab: {fileID: 100100000, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
 --- !u!224 &587556738 stripped
 RectTransform:
@@ -616,6 +623,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4415745982179208542, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
   m_PrefabInstance: {fileID: 587556737}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &587556740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2929498751205477790, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
+  m_PrefabInstance: {fileID: 587556737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &587556741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587556740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e161698ddb5b8934380125051b46cb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
 --- !u!1 &683796554
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,107 +869,18 @@ MonoBehaviour:
   materiUrl: https://techtots-d72d3-default-rtdb.asia-southeast1.firebasedatabase.app/Materi
   kuisUrl: 
   getMateriUrl: 
-  materi:
-    materi_icon: https://firebasestorage.googleapis.com/v0/b/techtots-d72d3.appspot.com/o/App%20Logo%20(1).png?alt=media&token=9815aac4-c716-4e38-90c6-f4188ddd9b1b
-    nama_materi: Pengenalan Teknologi Informasi
-    contents:
-    - nama: Pengertian Teknologi Informasi
-      content:
-      - content: Pengertian Teknologi Informasi
-        imageUrl: 
-        image: null
-        quizName: 
-        slideLayout: 0
-        title: 
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Hai anak-anak! Kamu pasti sering mendengar kata "teknologi", kan?
-          Nah, teknologi itu adalah kumpulan alat dan perangkat yang membantu kita
-          melakukan berbagai hal dengan lebih mudah dan cepat. Salah satu bagian
-          penting dari teknologi adalah Teknologi Informasi!
-        imageUrl: 
-        image: 
-        quizName: 
-        slideLayout: 0
-        title: Pengertian Teknologi Informasi
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Teknologi Informasi adalah segala sesuatu yang membantu kita mendapatkan,
-          menyimpan, mengolah, dan mengirimkan informasi. Contohnya, ketika kamu
-          menggunakan ponsel atau komputer untuk bermain game, mencari informasi
-          di internet, atau bahkan chatting dengan teman-temanmu, semua itu sudah
-          termasuk dalam Teknologi Informasi!
-        imageUrl: 
-        image: https://th.bing.com/th/id/R.6fd3b2549cf1f0bda36b71c42e8d3cd7?rik=L%2fCYIiqulbxToQ&riu=http%3a%2f%2fusdailyreview.com%2fwp-content%2fuploads%2f2014%2f08%2ftechnology.jpg&ehk=dzaRzyft3FDapcPTuIGU6nF%2b2zznUv5dDXCjidMhVMA%3d&risl=&pid=ImgRaw&r=0
-        quizName: 
-        slideLayout: 0
-        title: Apa itu Teknologi Informasi?
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      quizName: 
-    - nama: Manfaat Teknologi Informasi
-      content:
-      - content: Manfaat Teknologi Informasi
-        imageUrl: 
-        image: null
-        quizName: 
-        slideLayout: 0
-        title: 
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Hai anak-anak! Kamu pasti sering mendengar kata "teknologi", kan?
-          Nah, teknologi itu adalah kumpulan alat dan perangkat yang membantu kita
-          melakukan berbagai hal dengan lebih mudah dan cepat. Salah satu bagian
-          penting dari teknologi adalah Teknologi Informasi!
-        imageUrl: 
-        image: 
-        quizName: 
-        slideLayout: 0
-        title: Manfaat Teknologi Informasi
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      - content: Teknologi Informasi adalah segala sesuatu yang membantu kita mendapatkan,
-          menyimpan, mengolah, dan mengirimkan informasi. Contohnya, ketika kamu
-          menggunakan ponsel atau komputer untuk bermain game, mencari informasi
-          di internet, atau bahkan chatting dengan teman-temanmu, semua itu sudah
-          termasuk dalam Teknologi Informasi!
-        imageUrl: 
-        image: https://th.bing.com/th/id/R.6fd3b2549cf1f0bda36b71c42e8d3cd7?rik=L%2fCYIiqulbxToQ&riu=http%3a%2f%2fusdailyreview.com%2fwp-content%2fuploads%2f2014%2f08%2ftechnology.jpg&ehk=dzaRzyft3FDapcPTuIGU6nF%2b2zznUv5dDXCjidMhVMA%3d&risl=&pid=ImgRaw&r=0
-        quizName: 
-        slideLayout: 0
-        title: Apa itu Teknologi Informasi?
-        content1: 
-        content2: 
-        content3: 
-        image1: 
-        image2: 
-        image3: 
-      quizName: 
+  activeMateri:
+    materi_icon: 
+    nama_materi: 
+    contents: []
+    progress: 0
   quizzes:
     quizId: 0
     title: 
     description: 
     questions: []
+    score: 0
+  quizOnly: 0
   materiName: Testing
   subMateriName: Testing 1
   quizName: 

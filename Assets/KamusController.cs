@@ -22,12 +22,14 @@ public class KamusController : MonoBehaviour
 
     public Transform scrollContainer;
     public GameObject prefabButton;
+    public TMP_Text title;
     public TMP_Text content;
     public GameObject contentPanel;
     public GameObject buttonsPanel;
 
     public Dictionary<string, string> contents;
     public List<KamusContent> contentList;
+    public List<GameObject> buttonsList;    
     private void OnEnable()
     {
         foreach(Transform t in scrollContainer)
@@ -68,11 +70,27 @@ public class KamusController : MonoBehaviour
                     button.GetComponent<Button>().onClick.AddListener(() => buttonsPanel.SetActive(false));
                     button.GetComponent<Button>().onClick.AddListener(()=>contentPanel.SetActive(true));
                     string val = pair.Value;
+                    button.GetComponent<Button>().onClick.AddListener(() => title.text = pair.Key);
                     button.GetComponent<Button>().onClick.AddListener(() => content.text = val);
-
+                    buttonsList.Add(button);
                 }
             }
         }
+    }
+
+    public void Search(string key)
+    {
+        if(key != "")
+        {
+            buttonsList.ForEach(x => x.SetActive(false));
+            buttonsList.FindAll(x => x.GetComponentInChildren<TMP_Text>().text.ToLower().Contains(key)).ForEach(  x=>x.SetActive(true));
+        }
+        else
+        {
+            buttonsList.ForEach(x => x.SetActive(true));
+
+        }
+
     }
 
 }

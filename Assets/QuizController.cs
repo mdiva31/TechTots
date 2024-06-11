@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static QuizController;
 
 public class QuizController : MonoBehaviour
 {
@@ -40,7 +42,7 @@ public class QuizController : MonoBehaviour
     public GameObject canvasQuiz;
     public List<Button> buttons;
     public static QuizController instance;
-
+    public float timer;
     [Header("Pre-Quiz")]
     public GameObject readyPanel;
     public GameObject quizPanel;
@@ -51,8 +53,10 @@ public class QuizController : MonoBehaviour
 
     [Header("Quiz")]
     public TMP_Text TMPQuestion;
+    public TMP_Text TMPQUizTimer;
 
     [Header("Score")]
+    public GameObject timerHabisNotifikasi;
     public GameObject scorePanel;
     public TMP_Text TMPScore;
     public Button ulangiQuizButton;
@@ -62,6 +66,7 @@ public class QuizController : MonoBehaviour
 
     int choice = -1;
     public int correctAnswer;
+    bool flagQuizDone;
     private void Awake()
     {
         instance = this;
@@ -72,7 +77,7 @@ public class QuizController : MonoBehaviour
 
         backToMenuButton.onClick.AddListener(FindObjectOfType<MaterialController>().backToMenu.GetComponent<Button>().onClick.Invoke);
         lanjutSubmateri.onClick.AddListener(FindObjectOfType<MaterialController>().nextSubmateri.GetComponent<Button>().onClick.Invoke);
-
+        ulangiQuizButton.onClick.AddListener(UlangiQuiz);
 
     }
 
@@ -86,16 +91,45 @@ public class QuizController : MonoBehaviour
         readyPanel.gameObject.SetActive(true);
         quizPanel.gameObject.SetActive(false);
         scorePanel.gameObject.SetActive(false);
+        timerHabisNotifikasi.SetActive(false);
     }
 
+    Coroutine CR_Timer;
     public void Siap()
     {
         readyPanel.gameObject.SetActive(false);
         quizPanel.gameObject.SetActive(true);
         scorePanel.gameObject.SetActive(false);
-        StartCoroutine(StartQuiz(AppData.instance.quizzes));
+        CR_Timer =  StartCoroutine(StartQuiz(AppData.instance.quizzes));
+        flagQuizDone = false;
+        StartCoroutine(IE_StartTimer());
     }
 
+    public IEnumerator IE_StartTimer()
+    {
+        float counter = timer;
+        while(counter > 0)
+        {
+            TimeSpan tp = TimeSpan.FromSeconds(counter);
+            string zero = tp.Seconds < 10 ? "0" : "";
+            TMPQUizTimer.text = $"{tp.Minutes}:{zero}{tp.Seconds}";
+            yield return new WaitForSeconds(1);
+            if (flagQuizDone)
+            {
+                yield break;
+            }
+            counter--;  
+        }
+        if(CR_Timer != null)
+        {
+            StopCoroutine(CR_Timer);
+            timerHabisNotifikasi.SetActive(true);
+
+            ShowScore();
+
+        }
+
+    }
 
     public void BelumSiap()
     {
@@ -111,10 +145,11 @@ public class QuizController : MonoBehaviour
 
     }
 
+    float correct = 0;
 
     public IEnumerator StartQuiz(QuizData quizData)
     {
-        float correct = 0;
+        correct = 0;
         foreach (var quiz in quizData.questions)
         {
 
@@ -143,14 +178,12 @@ public class QuizController : MonoBehaviour
             yield return new WaitUntil(() => choice != -1);
 
             bool isCorrect = choice == correctAnswer;
+
             if (isCorrect)
             {
-                //Play Audio Correct;
+                correct++;
             }
-            else
-            {
-                //Play Audio Wrong
-            }
+
 
             for (int i = 0; i < buttons.Count; i++)
             {
@@ -162,16 +195,6 @@ public class QuizController : MonoBehaviour
             yield return new WaitForSeconds(3);
 
 
-            if (isCorrect)
-            {
-                correct++;
-            }
-            else
-            {
-
-            }
-
-
             //RESET
             buttons.ForEach(x => x.gameObject.SetActive(false));
             buttons.ForEach(x => x.GetComponent<Image>().color = Color.white);
@@ -179,14 +202,22 @@ public class QuizController : MonoBehaviour
             choice = -1;
         }
 
-        quizPanel.SetActive(false);
-        scorePanel.SetActive(true);
-        quizData.score = (correct / (float)quizData.questions.Count) * 100;
-        TMPScore.text = $"Score :  \n{quizData.score.ToString("0.0")}";
-        ProgressHandler.instance.SaveData();
+        ShowScore();
+
+
         yield return null;
     }
-
+    public void ShowScore()
+    {
+        flagQuizDone = true;
+        buttons.ForEach(x => x.gameObject.SetActive(false));
+        buttons.ForEach(x => x.GetComponent<Image>().color = Color.white);
+        quizPanel.SetActive(false);
+        scorePanel.SetActive(true);
+        AppData.instance.quizzes.score = (correct / (float)AppData.instance.quizzes.questions.Count) * 100;
+        TMPScore.text = $"Score :  \n{AppData.instance.quizzes.score.ToString("0.0")}";
+        ProgressHandler.instance.SaveData();
+    }
     public void SetButton(int index)
     {
         choice = index;

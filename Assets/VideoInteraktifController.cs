@@ -32,7 +32,6 @@ public class VideoInteraktifController : MonoBehaviour
             Destroy(t.gameObject);
         }
         GetContent();
-
     }
 
     public void GetContent()

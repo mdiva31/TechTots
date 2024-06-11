@@ -99,6 +99,8 @@ public class AppData : MonoBehaviour
 
     public Materi activeMateri;
     public QuizController.QuizData quizzes;
+    [Header("Quiz")]
+    public bool quizOnly;
     [Header("Data")]
     public string materiName;
     public string subMateriName;

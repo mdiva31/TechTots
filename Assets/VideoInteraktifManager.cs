@@ -12,6 +12,8 @@ public class VideoInteraktifManager : MonoBehaviour
     public VideoPlayer videoPlayer;
     IEnumerator Start()
     {
+        BGMController.instance.bgmSource.volume = 0;
+
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
         loadingCanvas.SetActive(true);
@@ -28,7 +30,10 @@ public class VideoInteraktifManager : MonoBehaviour
 
     public void BackToMenu()
     {
+        BGMController.instance.ResetVolume();
+
         SceneManager.LoadScene("Menu");
+
     }
 
 

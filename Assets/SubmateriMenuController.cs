@@ -14,6 +14,7 @@ public class SubmateriMenuController : MonoBehaviour
 
     private void OnEnable()
     {
+       
         foreach (Transform t in scrollContainer)
         {
             Destroy(t.gameObject);

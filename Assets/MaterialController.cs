@@ -37,6 +37,7 @@ public class MaterialController : MonoBehaviour
         yield return new WaitUntil(()=> ProgressHandler.instance != null);
         yield return new WaitUntil(() => ProgressHandler.instance.progressList.Count != 0);
 
+
         yield return SetupSlide();
     }
     [Header("Slides")]
@@ -66,6 +67,10 @@ public class MaterialController : MonoBehaviour
         AppData.instance.quizName = contents.Find(x => x.nama == subMateriTerpilih).quizName;
         // Setup Slide
 
+        if (AppData.instance.quizOnly)
+        {
+            slides = slides.FindAll(x => x.slideLayout == SlideLayout.quiz);
+        }
 
         foreach(var content in slides)
         {

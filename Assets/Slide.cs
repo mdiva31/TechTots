@@ -68,6 +68,7 @@ public class Slide : MonoBehaviour
 
     public IEnumerator IE_DowmloadImage(Image targetImage , string url)
     {
+        Debug.Log("Downloading : " + url);
         using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(url))
         {
             yield return uwr.SendWebRequest();
