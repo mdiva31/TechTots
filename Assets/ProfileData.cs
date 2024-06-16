@@ -27,6 +27,11 @@ public class ProfileData : MonoBehaviour
             tanggalLahir = PlayerPrefs.GetString("tanggalLahir");
         }
     }
+
+    // Data akan disimpan menggunakan string yang diterima-
+    // Lalu akan disimpan kedalam PLayerPrefs.
+    // Tujuannya adalah agar string tersebut selalu tersimpan
+
     public void SaveData(string newUsername, string newTanggalLahir)
     {
         username = newUsername;
@@ -35,6 +40,9 @@ public class ProfileData : MonoBehaviour
         PlayerPrefs.SetString("tanggalLahir",tanggalLahir);
     }
 
+
+    // Hanya untuk Debugging dimana developer dapat menghapus-
+    // data yang sudah tersimpan
     [ContextMenu("Reset Player Pref")]
     public void ResetPlayerPref()
     {

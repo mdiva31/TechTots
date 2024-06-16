@@ -215,7 +215,7 @@ public class QuizController : MonoBehaviour
         quizPanel.SetActive(false);
         scorePanel.SetActive(true);
         AppData.instance.quizzes.score = (correct / (float)AppData.instance.quizzes.questions.Count) * 100;
-        TMPScore.text = $"Score :  \n{AppData.instance.quizzes.score.ToString("0.0")}";
+        TMPScore.text = $"{AppData.instance.quizzes.score.ToString("0.0")}";
         ProgressHandler.instance.SaveData();
     }
     public void SetButton(int index)

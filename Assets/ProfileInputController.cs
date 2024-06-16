@@ -7,16 +7,28 @@ using UnityEngine;
 
 public class ProfileInputController : MonoBehaviour
 {
+    [Header("UI")]
     public TMP_InputField namaField;
     public DatePicker datePicker;
     public TMP_Text feedbackError;
+
+    [Header("Settings")]
+
+    // Aktifkan jika ingin memeriksa saat mulai permainan
     public bool checkOnStart;
+
+    // Aktifkan jika ingin menutup canvas jika data sudah berhasil di update
     public bool closeOnSave;
     public GameObject menuUtama;
     private void Start()
     {
+
+        // Jika benar, maka saat Start dipanggil game akan memeriksa apakah username
+        // sudah ada atau belum
         if (checkOnStart)
         {
+            // PlayerPrefs.HasKey("Username") berguna untuk memeriksa 
+            // LocalStorage apakah ada data yang disimpan dengan key "username"
             if (PlayerPrefs.HasKey("username"))
             {
                 menuUtama.SetActive(true);
@@ -30,6 +42,8 @@ public class ProfileInputController : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("username"))
         {
+            // Setup UI jika data sudah ada
+            
             feedbackError.text= string.Empty;
             namaField.text = PlayerPrefs.GetString("username");
             SerializableDate date = new SerializableDate();
@@ -38,6 +52,10 @@ public class ProfileInputController : MonoBehaviour
             
         }
     }
+
+    
+
+    //Menyimpan Data
     public void SaveData()
     {
         bool flagError = false;
@@ -70,6 +88,8 @@ public class ProfileInputController : MonoBehaviour
 
 
       
+        // Menyimpan ke Instance Profile Data yang akan konsisten-
+        // didalam semua scene
         ProfileData.instance.SaveData(namaField.text, datePicker.SelectedDate.Date.ToString());
         if (closeOnSave)
         {

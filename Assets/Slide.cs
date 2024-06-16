@@ -24,7 +24,26 @@ public class Slide : MonoBehaviour
     
     public IEnumerator SetupSlide(AppData.ContentItem content )
     {
+        Debug.Log("Replacing strings");
+        if(content.content != null)
+        {
+            content.content = content.content.Replace("\\n", $"\n");
+
+        }
+        if (content.content1 != null)
+        {
+            content.content1 = content.content1.Replace("\\n", $"\n");
+
+        }
+        if (content.content2 != null)
+        {
+            content.content2 = content.content2.Replace("\\n", $"\n");
+
+        }
+
         layout = content.slideLayout;
+        Debug.Log("Setting Layout");
+
         switch (content.slideLayout)
         {
             case SlideLayout.quiz:

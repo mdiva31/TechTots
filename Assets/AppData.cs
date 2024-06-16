@@ -42,7 +42,7 @@ public class AppData : MonoBehaviour
     [Header("Debug")]
     [TextArea(7,7)]
     public string getMateriUrl;
-
+    public bool splashScreenDone;
     #region MATERI CLASSES
     [System.Serializable]
     public class Materi

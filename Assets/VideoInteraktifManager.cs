@@ -12,12 +12,16 @@ public class VideoInteraktifManager : MonoBehaviour
     public VideoPlayer videoPlayer;
     IEnumerator Start()
     {
+        //Mematikan Suara dari BGM
         BGMController.instance.bgmSource.volume = 0;
 
+        //Mengatur orientasi dari layar menjadi landscape
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
         loadingCanvas.SetActive(true);
         yield return new WaitUntil(() => AppData.instance != null);
+
+        //Mengambil data Video URL dari AppData
         videoUrl = AppData.instance.vidUrl;
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = videoUrl;
@@ -25,15 +29,14 @@ public class VideoInteraktifManager : MonoBehaviour
         yield return new WaitUntil(()=>videoPlayer.isPrepared == true);
 
         loadingCanvas.SetActive(false);
+        // Memutar Video ke GameObjec Video Player
         videoPlayer.Play();
     }
 
     public void BackToMenu()
     {
         BGMController.instance.ResetVolume();
-
         SceneManager.LoadScene("Menu");
-
     }
 
 

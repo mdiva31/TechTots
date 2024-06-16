@@ -14,13 +14,17 @@ public class NameChanger : MonoBehaviour
         VIDEO
     }
     public Type type;
+    string initialString;
     void OnEnable()
     {
-
+        initialString = GetComponent<TMP_Text>().text;
         StartCoroutine(IE_SetName());
 
     }
-
+    private void OnDisable()
+    {
+        GetComponent<TMP_Text>().text = initialString;
+    }
     public IEnumerator IE_SetName()
     {
         yield return new WaitUntil(()=> AppData.instance != null);

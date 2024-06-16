@@ -31,12 +31,12 @@ public class MaterialController : MonoBehaviour
 
     private IEnumerator Start()
     {
-        // yield return AppData.instance.IE_GetMateri();
+        // Mengubah orientasi layar menjadi Landscape
         Screen.orientation = ScreenOrientation.LandscapeRight;
 
+        // Menunggu instance dari ProgressHandler untuk tidka sama dengan null
         yield return new WaitUntil(()=> ProgressHandler.instance != null);
         yield return new WaitUntil(() => ProgressHandler.instance.progressList.Count != 0);
-
 
         yield return SetupSlide();
     }
@@ -46,7 +46,7 @@ public class MaterialController : MonoBehaviour
     public IEnumerator SetupSlide()
     {
 
-
+        // Mematikan panel panel yang tidak dibutuhkan
         quizButton.SetActive(false);
         backToMenu.SetActive(false);
         ulangiButton.SetActive(false);  
@@ -59,27 +59,38 @@ public class MaterialController : MonoBehaviour
         currentProgress = 0;
         canvasLoading.SetActive(true);
 
+        // Mengambil data konten dari AppData 
         AppData.instance.activeMateri = ProgressHandler.instance.progressList.Find(x => x.materi.nama_materi == AppData.instance.materiName).materi;
+       
+        //Mengabil konten submateri
         List<SubMateri> contents = AppData.instance.activeMateri.contents;
         subMateriTerpilih = AppData.instance.subMateriName;
         List<AppData.ContentItem> slides = contents.Find(x=>x.nama == subMateriTerpilih).content;
         maxProgress = slides.Count-2;
         AppData.instance.quizName = contents.Find(x => x.nama == subMateriTerpilih).quizName;
-        // Setup Slide
 
+        //  Setup jika hanya Quiz
         if (AppData.instance.quizOnly)
         {
+            //Hanya mengambil data kuis
             slides = slides.FindAll(x => x.slideLayout == SlideLayout.quiz);
         }
 
+        // Spawn semua slide yang sudah disipapkan
+        // Untuk semua layout slide sudah ada Templatenya dan dapat dilihat pada-
+        // Inpsector -> MaterialController -> Tempalates
         foreach(var content in slides)
         {
+            //Slide di spawn menurut slide_layout dan template yang sudah disiapkan.
             GameObject slide = Instantiate(templates.Find(x=>x.layout == content.slideLayout).prefab, canvas);
             this.slides.Add(slide.GetComponent<Slide>());
+
+            //Donwload content yang ada pada slide seperti image
             StartCoroutine(slide.GetComponent<Slide>().SetupSlide(content));
 
         }
-
+        // Menunggu semua file sudah terdownload
+        // Untuk tau materi sudah ready, Program akan memanggil AllMateriReady()
         yield return new WaitUntil(AllMateriReady);
 
         UpdateSlide();
@@ -88,8 +99,12 @@ public class MaterialController : MonoBehaviour
 
     public bool AllMateriReady()
     {
+        //Memeriksa apakah masing masing slide sudah ready
+        // Jika belum maka akan return false;
+        // Jika semua slide sudah ready maka akan return true;
         foreach(var slide in slides)
         {
+         
             if(slide.ready == false)
             {
                 return false;
@@ -99,11 +114,15 @@ public class MaterialController : MonoBehaviour
 
     }
 
+    //Function ini dipanggil dar OnClick button Next pada CanvasControl
     public void NextSlide()
     {
         currentSlide++;
         UpdateSlide();
     }
+
+    //Function ini dipanggil dar OnClick button Prev pada CanvasControl
+
     public void PrevSlide()
     {
         if(currentSlide !=0)
@@ -114,16 +133,23 @@ public class MaterialController : MonoBehaviour
 
     }
 
+        //Function ini dipanggil dar OnClick Button-Ulangi pada CanvasControl
+
     public void RestartSlide()
     {
         currentSlide = 0;
         UpdateSlide();
     }
 
+    //Function ini dipanggil dar OnClick Button-Kembali ke Menu pada CanvasControl
+
     public void BackToMenu()
     {
         SceneManager.LoadScene("Menu");
     }
+
+    //Function ini dipanggil dar OnClick Button-Next Submateri ke Menu pada CanvasControl
+
     public void NextSubmateri()
     {
         List<SubMateri> contents = AppData.instance.activeMateri.contents;
@@ -147,6 +173,9 @@ public class MaterialController : MonoBehaviour
 
     public void UpdateSlide()
     {
+        // Jika slide kini lebih besar dari progress yang sudah tercatat
+        // Maka udpate progress
+        // Tujuannya agar setiap mengulang, progress dari slide tidak berkurang
         if(currentSlide > currentProgress)
         {
             currentProgress = currentSlide;
@@ -156,8 +185,11 @@ public class MaterialController : MonoBehaviour
             ProgressHandler.instance.SaveData();
 
         }
+
+        //Jika slide selanjutnya adalah slide quiz
         if (slides[currentSlide].layout == SlideLayout.quiz) 
         {
+            // Mematikan UI yang tidak diperlukan
             quizButton.SetActive(false);
             backToMenu.SetActive(false);
             ulangiButton.SetActive(false);
@@ -165,6 +197,7 @@ public class MaterialController : MonoBehaviour
             nextSlideButton.SetActive(false);
             prevSlideButton.SetActive(false);
 
+            // Memeriksa apakah submateri yang aktif sekarang adalah Submateri terakhir atau tidak
             List<SubMateri> contents = AppData.instance.activeMateri.contents;
             SubMateri choosenContent = contents.Find(x => x.nama == subMateriTerpilih);
 
@@ -179,7 +212,7 @@ public class MaterialController : MonoBehaviour
         }
         else if (currentSlide+1 != slides.Count && slides[currentSlide+1].layout == SlideLayout.quiz)
         {
-            
+            // Setelah Quiz    
             quizButton.SetActive(true);
             ulangiButton.SetActive(true);
             List<SubMateri> contents = AppData.instance.activeMateri.contents;
@@ -194,8 +227,10 @@ public class MaterialController : MonoBehaviour
             }
             nextSlideButton.gameObject.SetActive(false);
         }   
+        // Jika Submateri tidak memiliki quiz, maka masuk kesini
         else if (currentSlide == slides.Count-1)
         {
+            
             ulangiButton.SetActive(true);
 
             List<SubMateri> contents = AppData.instance.activeMateri.contents;
@@ -221,7 +256,7 @@ public class MaterialController : MonoBehaviour
         }
 
 
-
+        // Mematikan dan menyalakan slide sesuai dengan index currentSlide yang aktif
         foreach (Transform item in canvas)
         {
             Debug.Log(item.name + " index : " + item.GetSiblingIndex());
