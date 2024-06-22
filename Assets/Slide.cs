@@ -82,6 +82,14 @@ public class Slide : MonoBehaviour
                 this.content2.text = content.content2;
                 break;
         }
+        if(layout== SlideLayout.quiz)
+        {
+            transform.SetParent(transform.parent.parent);
+            GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+            GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
+
+
+        }
         ready = true;
     }
 

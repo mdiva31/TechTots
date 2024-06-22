@@ -83,6 +83,7 @@ public class MaterialController : MonoBehaviour
         {
             //Slide di spawn menurut slide_layout dan template yang sudah disiapkan.
             GameObject slide = Instantiate(templates.Find(x=>x.layout == content.slideLayout).prefab, canvas);
+          
             this.slides.Add(slide.GetComponent<Slide>());
 
             //Donwload content yang ada pada slide seperti image
