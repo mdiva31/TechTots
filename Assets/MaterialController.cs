@@ -258,10 +258,9 @@ public class MaterialController : MonoBehaviour
 
 
         // Mematikan dan menyalakan slide sesuai dengan index currentSlide yang aktif
-        foreach (Transform item in canvas)
+        foreach (Slide item in slides)
         {
-            Debug.Log(item.name + " index : " + item.GetSiblingIndex());
-            if (item.GetSiblingIndex() == currentSlide)
+            if (slides.IndexOf(item) == currentSlide)
             {
                 item.gameObject.SetActive(true);
             }
